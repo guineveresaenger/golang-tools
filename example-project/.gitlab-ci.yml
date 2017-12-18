@@ -24,21 +24,18 @@ stages:
   - test
   - publish
 
-build-image:
+make-app:
   image: $GOGLIDE_IMAGE
   variables:
     IMAGE_DEVL_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$CI_JOB_ID
   stage: build
-  only:
-    - branches
-  except:
-    - master
   script: 
   - echo $WORKSPACE
   - export GOPATH=$WORKSPACE
   - export PATH=\$GOPATH/bin:\$PATH
   - cd example-project
   - make --no-builtin-rules --file make.golang build-app
+
 
 # # Tests go here!
 # # test: 
