@@ -24,7 +24,7 @@ stages:
   - test
   - publish
 
-build-branch:
+build-image:
   image: $GOGLIDE_IMAGE
   variables:
     IMAGE_DEVL_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$CI_JOB_ID
@@ -39,17 +39,6 @@ build-branch:
   - export PATH=\$GOPATH/bin:\$PATH
   - cd example-project
   - make --no-builtin-rules --file make.golang build-app
-  # - docker build -t $IMAGE_DEVL_NAME .
-  # - docker push $IMAGE_DEVL_NAME
-
-# build-master:
-#   stage: build
-#   only:
-#     - master
-#     - tags
-#   script:
-#   - docker build -t $IMAGE_PROD_NAME .
-#   - docker push $IMAGE_PROD_NAME
 
 # # Tests go here!
 # # test: 
